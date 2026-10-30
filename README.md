@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.png" alt="Agentic Research Assistant — an AI agent that writes cited company-intelligence reports" width="100%">
+</p>
+
 # Agentic Research Assistant — Cited Company Intelligence Reports
 
 > An AI **agent** that turns a company name into a trustworthy, *fully cited* competitive-intelligence
@@ -49,11 +53,43 @@ flowchart LR
 - 🔎 `pdf_search_tool` — semantic (RAG) search over an internal corpus of filings & reports (Tesla 10-K/10-Q, Rivian 10-Q, IEA Global EV Outlook), using an in-memory vector store.
 - 🌐 `web_search` — live web search via **Tavily**, for anything more recent than the filings.
 
+## 🔍 Watch the agent work
+
+For the Tesla report, the agent made **10 tool calls in ~21 seconds** — pulling each financial
+figure from the internal filings, then switching to **live web search** for competitors and news:
+
+```text
+Q:  Competitive-intelligence report on Tesla (Q2 2026)…
+
+🧠  pdf_search_tool  — internal filings
+     1. Tesla total revenues Q2 2026
+     2. Tesla GAAP gross margin Q2 2026
+     3. Tesla GAAP net income Q2 2026
+     4. Tesla free cash flow Q2 2026
+     5. Tesla vehicle deliveries Q2 2026
+     6. Tesla energy storage deployed Q2 2026
+
+🌐  tavily_web_search_tool  — live web
+     7. BYD Q2 2026
+     8. Rivian Q2 2026
+     9. Ford Q2 2026
+    10. Tesla latest news   (time_range: month)
+
+✅  → an 8-section, fully-cited report
+```
+
+It chose tools deliberately — **filings for internal financials, the web for anything current or
+competitor-related** — exactly the division of labor the task calls for.
+
 ## 🏆 Does the agent actually beat a simpler baseline?
 
 The whole point of an agent is the extra complexity earning its keep. So both the **agent** and a
 **naïve one-shot RAG baseline** were scored on a **golden dataset** of questions with known answers —
 across PDF facts, live-web facts, hybrid, conflicting sources, and deliberately unanswerable ones.
+
+<p align="center">
+  <img src="assets/eval-agent-vs-baseline.png" alt="Agent vs. baseline evaluation — the agent scores higher on every metric" width="92%">
+</p>
 
 | Metric | 🤖 Agent | Baseline (naïve RAG) |
 |---|:---:|:---:|
