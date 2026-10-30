@@ -1,0 +1,25 @@
+# Secrets — real keys live in config.json (NEVER committed). Copy config.example.json → config.json
+config.json
+.env
+
+# Large provided corpus — third-party PDFs, not committed (supply your own; see README)
+data.zip
+data/*.pdf
+data_extracted/
+
+# Vector store / caches
+*.sqlite3
+*.sqlite
+
+# Notebook + Python cruft
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+# Environments
+.venv/
+.venv312/
+venv/
+
+# macOS
+.DS_Store
