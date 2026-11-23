@@ -15,7 +15,7 @@
 ![OpenAI](https://img.shields.io/badge/OpenAI-gpt--4o--mini-412991?logo=openai&logoColor=white)
 ![Pattern](https://img.shields.io/badge/pattern-agent%20%2B%20RAG-16A34A)
 
-**JHU GenAI & Agentic AI — Project 3** · built in Google Colab · **both low-code and full-code implementations included**
+**An independent agentic-AI project** · low-code and full-code implementations included
 
 ### 📂 What to look at
 - **[`research_agent_lowcode.ipynb`](research_agent_lowcode.ipynb)** / **[`research_agent_fullcode.ipynb`](research_agent_fullcode.ipynb)** — the executed notebooks (code + agent runs + evaluation). *GitHub renders them in your browser.*
