@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/banner.png" alt="Agentic Research Assistant — an AI agent that writes cited company-intelligence reports" width="100%">
+  <img src="assets/banner.png" alt="SignalBrief — a LangGraph competitive-intelligence and cited RAG research engine" width="100%">
 </p>
 
-# Agentic Research Assistant — Cited Company Intelligence Reports
+# SignalBrief — A LangGraph Competitive Intelligence & Cited RAG Research Engine
 
 > An AI **agent** that turns a company name into a trustworthy, *fully cited* competitive-intelligence
 > report in minutes — work that takes a human analyst **3–5 days**. It decides for itself when to read
@@ -15,10 +15,10 @@
 ![OpenAI](https://img.shields.io/badge/OpenAI-gpt--4o--mini-412991?logo=openai&logoColor=white)
 ![Pattern](https://img.shields.io/badge/pattern-agent%20%2B%20RAG-16A34A)
 
-**An independent agentic-AI project** · low-code and full-code implementations included
+**An independent agentic-AI project**
 
 ### 📂 What to look at
-- **[`research_agent_lowcode.ipynb`](research_agent_lowcode.ipynb)** / **[`research_agent_fullcode.ipynb`](research_agent_fullcode.ipynb)** — the executed notebooks (code + agent runs + evaluation). *GitHub renders them in your browser.*
+- **[`signalbrief_agent.ipynb`](signalbrief_agent.ipynb)** — the executed notebook: the full agent implementation, its live runs, and the evaluation. *GitHub renders it in your browser.*
 - **[`Tesla_Competitive_Intelligence_Report.pdf`](Tesla_Competitive_Intelligence_Report.pdf)** — the generated, cited report (the deliverable).
 - **[`Tesla_agent_trajectory.json`](Tesla_agent_trajectory.json)** — the agent's actual step-by-step tool-call log.
 
@@ -135,16 +135,14 @@ Every number is traceable — e.g. *"Total Revenues: $28.24 billion … [TSLA-Q2
 for filings, and live URLs for current events. The full report includes Financial Performance, a
 Competitive Landscape, Recent Developments, a SWOT, Key Risks, and a Sources list.
 
-## 🧰 Two implementations (both included)
-- **Low-code** (`research_agent_lowcode.ipynb`) — builds the agent with LangGraph's higher-level
-  agent construction.
-- **Full-code** (`research_agent_fullcode.ipynb`) — wires the agent loop and tool-calling more
-  explicitly.
-
-Shipping both shows the same system at two levels of abstraction — rapid assembly *and* from-the-ground-up control.
+## 🧰 Implementation
+The agent is built **from the ground up** in `signalbrief_agent.ipynb` — the LangGraph state
+graph, the `agent` / `tools` nodes, the routing function, tool-calling, and trajectory capture are all
+wired explicitly, so every decision the agent makes is visible in the code rather than hidden behind a
+higher-level constructor.
 
 ## ⚙️ Engineering touches
-- **Headless execution harnesses** (`run_lowcode.py`, `run_full.py`) — run a notebook end-to-end with
+- **Headless execution harness** (`run.py`) — runs the notebook end-to-end with
   `nbclient`, injecting a temporary retry/timeout patch so transient proxy failures (401s, timeouts)
   don't kill a long run, then cleaning the notebook before saving.
 
@@ -170,7 +168,7 @@ Shipping both shows the same system at two levels of abstraction — rapid assem
 3. Supply the document corpus in `data/` (Tesla/Rivian filings + the IEA EV Outlook). The original
    corpus (`data.zip`, ~31 MB of third-party PDFs) is **not** included; `data/golden_dataset.csv`
    (the evaluation set) *is*.
-4. Open a notebook in Jupyter/Colab, **or** run it headlessly: `python run_lowcode.py`.
+4. Open the notebook in Jupyter/Colab, **or** run it headlessly: `python run.py`.
 
 ## Honest limitations / future work
 - **Strict figure-matching** (`figure_ok` ≈ 0.39) is penalized by rounding; a tolerance band would help.

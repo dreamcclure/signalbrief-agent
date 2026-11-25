@@ -18,7 +18,7 @@ if not getattr(_SC, "_gl_patched", False):
     _SC._gl_patched = True
 '''
 
-path = "research_agent_fullcode.ipynb"
+path = "signalbrief_agent.ipynb"
 nb = nbformat.read(path, as_version=4)
 
 # Inject the retry patch as a temporary first cell (removed after execution)
